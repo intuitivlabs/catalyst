@@ -1,0 +1,1993 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base theme variables - light theme by default */
+:root {
+  --foreground-rgb: 13, 35, 64; /* Dark blue text color */
+  --background-rgb: 248, 249, 250;
+  --timeline-line: 229, 231, 235;
+  --accent-color: 1, 138, 239; /* TMC bright blue */
+  --corporate-blue: 13, 35, 64; /* TMC dark blue */
+  --card-bg: 255, 255, 255;
+  --card-border: 0, 0, 0, 0.04;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --type-pill-policy-bg: 232, 238, 247;
+  --type-pill-company-bg: 254, 243, 199;
+  --type-pill-company-color: 146, 64, 14;
+  --type-pill-company-border: 251, 191, 36;
+  --timeline-dot-future: 229, 231, 235;
+  --timeline-dot-past: 16, 185, 129;
+  --timeline-line-past: 13, 150, 105;
+  --date-label-bg: 240, 247, 255;
+  --date-highlight-bg: 240, 249, 255;
+}
+
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark) {
+    --foreground-rgb: 229, 231, 235;
+    --background-rgb: 17, 24, 39;
+    --timeline-line: 55, 65, 81; /* Darker line */
+    --accent-color: 59, 130, 246; /* Blue adjusted for dark mode */
+    --corporate-blue: 165, 180, 252; /* Lighter blue for dark mode */
+    --card-bg: 31, 41, 55; /* Dark card background */
+    --card-border: 255, 255, 255, 0.05;
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --type-pill-policy-bg: 30, 58, 138, 0.3;
+    --type-pill-company-bg: 120, 53, 15, 0.3;
+    --type-pill-company-color: 253, 230, 138;
+    --type-pill-company-border: 217, 119, 6, 0.5;
+    --timeline-dot-future: 75, 85, 99;
+    --timeline-dot-past: 5, 150, 105;
+    --timeline-line-past: 4, 120, 87;
+    --date-label-bg: 17, 24, 39, 0.8;
+    --date-highlight-bg: 30, 58, 138, 0.15;
+  }
+}
+
+/* Dark mode styles */
+.dark {
+  --foreground-rgb: 229, 231, 235; /* Light gray text color */
+  --background-rgb: 17, 24, 39; /* Dark background */
+  --timeline-line: 55, 65, 81; /* Darker line */
+  --accent-color: 59, 130, 246; /* Blue adjusted for dark mode */
+  --corporate-blue: 165, 180, 252; /* Lighter blue for dark mode */
+  --card-bg: 31, 41, 55; /* Dark card background */
+  --card-border: 255, 255, 255, 0.05;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --type-pill-policy-bg: 30, 58, 138, 0.3;
+  --type-pill-company-bg: 120, 53, 15, 0.3;
+  --type-pill-company-color: 253, 230, 138;
+  --type-pill-company-border: 217, 119, 6, 0.5;
+  --timeline-dot-future: 75, 85, 99;
+  --timeline-dot-past: 5, 150, 105;
+  --timeline-line-past: 4, 120, 87;
+  --date-label-bg: 17, 24, 39, 0.8;
+  --date-highlight-bg: 30, 58, 138, 0.15;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  letter-spacing: -0.01em;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Navigation/Header styles */
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  position: relative;
+  z-index: 200;
+  background: transparent;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+.mobile-hamburger {
+  margin-right: 1rem;
+}
+@media (max-width: 640px) {
+  .nav-header {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .nav-left {
+    flex: 1;
+    justify-content: flex-start;
+  }
+  .mobile-hamburger {
+    margin-right: 1rem;
+  }
+  .logo-wrapper {
+    width: 120px;
+    height: 36px;
+    margin-left: 0.25rem;
+  }
+  .menu-hamburger {
+    margin-right: 0 !important;
+    padding-right: 0.25rem !important;
+  }
+  .search-container {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    /* Match card padding for visual alignment */
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .flip-card {
+    width: 100%;
+  }
+  .home-page .flip-card {
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 40px); /* 0.5rem padding on each side */
+    max-width: none;
+  }
+}
+
+@media (min-width: 641px) {
+  .logo-wrapper {
+    margin-left: 0.5rem;
+  }
+  .menu-hamburger {
+    margin-right: 0 !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+/* Mobile menu overlay and drawer */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 210;
+}
+.mobile-menu {
+  position: fixed;
+  top: 0; right: -100vw;
+  width: 80vw;
+  max-width: 320px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.08);
+  z-index: 220;
+  transition: right 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+.mobile-menu.open {
+  right: 0;
+}
+.mobile-menu-content {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.close-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+@media (max-width: 640px) {
+  .mobile-menu {
+    width: 90vw;
+    max-width: 360px;
+  }
+}
+
+/* Hide mobile menu on desktop */
+@media (min-width: 641px) {
+  .mobile-menu, .mobile-menu-overlay, .mobile-hamburger {
+    display: none !important;
+  }
+  .menu-hamburger {
+    display: flex !important;
+  }
+}
+
+/* Timeline dot styles - positioned much closer to cards and centered vertically */
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgb(var(--timeline-dot-future)); /* Theme-aware */
+  position: absolute;
+  left: 321px;
+  top: 80%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.timeline-dot.past {
+  background-color: rgb(var(--timeline-dot-past)); /* Theme-aware */
+}
+
+.timeline-dot.current {
+  width: 22px;
+  height: 22px;
+  left: 318px;
+  top: 70%;
+  transform: translateY(-50%);
+  background-color: rgb(var(--accent-color)); /* Theme-aware */
+  animation: pulse 2s infinite;
+}
+
+/* Current date indicator - horizontal line crossing the timeline */
+.current-date-indicator {
+  position: absolute;
+  width: 30px; /* Slightly wider to better cross the timeline */
+  height: 3px;
+  background-color: rgb(var(--accent-color));
+  left: 329px; /* Perfect alignment with center of the timeline line */
+  z-index: 20;
+  border-radius: 1.5px;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  pointer-events: none;
+}
+
+/* Special case for the timeline indicator when it's the same day as current date */
+.timeline-line-past.same-day-event {
+  background-color: rgb(var(--timeline-line-past)); /* Ensure color is set */
+  /* Let the inline styles control the height */
+}
+
+.current-date-indicator.same-day-event {
+  background-color: rgb(var(--accent-color));
+  /* Let the inline styles position the element */
+  z-index: 9 !important; /* Always below the dot for same-day events */
+  width: 40px !important; /* Wider to better cross the dot */
+  height: 3px !important; /* Slightly thicker for better visibility */
+  box-shadow: 0 0 3px rgba(var(--accent-color), 0.8) !important; /* Add glow effect */
+  opacity: 0.9 !important; /* Slightly transparent */
+}
+
+/* Current date label */
+.current-date-label {
+  position: absolute;
+  right: calc(100% + 8px);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgb(var(--corporate-blue));
+  background-color: rgba(var(--date-label-bg));
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  z-index: 21; /* Higher than indicator */
+  pointer-events: none;
+  /* Fixed vertical alignment - keep centered with line */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Timeline vertical line - continuous line between first and last card */
+.timeline-line {
+  position: absolute;
+  left: 328px;
+  top: 0;
+  bottom: 0; 
+  width: 4px;
+  background-color: rgb(var(--timeline-line));
+  z-index: 5;
+  height: 100%;
+  display: block !important; /* Force display */
+}
+
+/* Past timeline line - shows completed segment */
+.timeline-line-past {
+  position: absolute;
+  left: 328px; /* Exactly match the timeline-line position */
+  top: 0;
+  width: 4px;
+  background-color: rgb(var(--timeline-line-past));
+  z-index: 6;
+  display: block !important;
+  max-height: 100%;
+}
+
+/* Compression indicator color styles - keep these */
+.compression-indicator-75 {
+  background-color: #10B981; /* Green for highest compression */
+}
+
+.compression-indicator-50 {
+  background-color: #F59E0B; /* Yellow for medium compression */
+}
+
+.compression-indicator-typical {
+  background-color: #64748b; /* Gray for typical timeline */
+}
+
+/* Card flip styles with improved layout and fixed positioning */
+.flip-card {
+  perspective: 1000px;
+  min-height: 200px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 8rem;
+  position: relative;
+}
+
+.flip-card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  min-height: inherit;
+  left: 0;
+  right: 0;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  min-height: inherit;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(var(--card-border));
+  overflow: hidden;
+  padding: 2.5rem;
+  left: 0;
+  box-sizing: border-box;
+  background-color: rgb(var(--card-bg));
+}
+
+.flip-card-front {
+  z-index: 1;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Type pill styles with increased padding */
+.type-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  letter-spacing: 0.025em;
+}
+
+.type-pill.company {
+  background-color: rgb(var(--type-pill-company-bg));
+  color: rgb(var(--type-pill-company-color));
+  border: 1px solid rgb(var(--type-pill-company-border));
+}
+
+.type-pill.policy {
+  background-color: rgb(var(--type-pill-policy-bg));
+  color: rgb(var(--corporate-blue));
+  border: 1px solid rgba(var(--corporate-blue), 0.15);
+}
+
+/* Logo container styles */
+.logo-container {
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+}
+
+.logo-box {
+  background-color: rgb(var(--card-bg));
+  padding: 1.75rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(var(--card-border));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.logo-box:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.logo-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Logo wrapper styles */
+.logo-wrapper {
+  position: relative;
+  width: 160px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem; /* Reduce left margin */
+}
+@media (max-width: 640px) {
+  .logo-wrapper {
+    width: 120px;
+    height: 36px;
+    margin-left: 0.25rem; /* Reduce left margin on mobile */
+  }
+}
+
+/* Pulse animation for current timeline dot */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--accent-color), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-color), 0);
+  }
+}
+
+/* Match TMC corporate headers */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: rgb(var(--corporate-blue));
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+/* Styling for interactive elements */
+.text-blue-600 {
+  color: rgb(var(--accent-color)) !important;
+}
+
+/* View Source button styles */
+.source-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid rgba(var(--accent-color), 1);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(var(--accent-color), 1);
+  background-color: rgba(var(--card-bg), 0.8);
+  transition: all 0.15s ease;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.source-button:hover {
+  background-color: rgba(var(--accent-color), 0.1);
+  border-color: rgba(var(--accent-color), 0.8);
+}
+
+.source-button:focus {
+  outline: none;
+  border-color: rgba(var(--accent-color), 0.9);
+  box-shadow: 0 0 0 2px rgba(var(--accent-color), 0.2);
+}
+
+.source-button svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-right: 0.25rem;
+}
+
+/* Button container to display buttons side by side on larger screens */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Jump to due date button specific styles */
+.jump-button {
+  background-color: rgba(var(--accent-color), 0.1);
+  border-color: rgba(var(--accent-color), 0.5);
+}
+
+.jump-button:hover {
+  background-color: rgba(var(--accent-color), 0.2);
+  border-color: rgba(var(--accent-color), 1);
+}
+
+.jump-button svg {
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.jump-button:hover svg {
+  transform: translateX(2px);
+}
+
+/* Jump to current button styles */
+.jump-to-current-button {
+  position: fixed;
+  bottom: 24px;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Offset by half the button width */
+  background-color: rgb(var(--accent-color));
+  color: rgb(var(--card-bg));
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.jump-to-current-button:hover {
+  transform: translateX(-50%) translateY(-2px); /* Keep centered while moving up */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.jump-to-current-button:active {
+  transform: translateX(-50%) translateY(0); /* Keep centered while pressing */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Back to top button styles */
+.back-to-top-button {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background-color: rgb(var(--accent-color));
+  color: rgb(var(--card-bg));
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(1, 138, 239, 0.10);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-to-top-button:hover {
+  background-color: #2563eb;
+  box-shadow: 0 8px 24px rgba(1, 138, 239, 0.15);
+  transform: translateX(-50%) scale(1.04);
+}
+
+@media (max-width: 640px) {
+  .back-to-top-button {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    top: 12px;
+  }
+}
+
+/* Back to all stocks button styles */
+.back-to-all-stocks {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, #e0e7ef 0%, #f8fafc 100%);
+  color: rgb(var(--accent-color));
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.3rem 0.6rem 1.1rem;
+  box-shadow: 0 2px 8px rgba(1, 138, 239, 0.07);
+  transition: background 0.18s, box-shadow 0.18s, color 0.18s, transform 0.18s;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  margin-left: 0.5rem;
+  text-decoration: none;
+}
+
+.back-to-all-stocks:hover {
+  background: linear-gradient(90deg, #dbeafe 0%, #e0e7ef 100%);
+  color: #2563eb;
+  box-shadow: 0 4px 16px rgba(1, 138, 239, 0.13);
+  transform: translateY(-2px) scale(1.03);
+  text-decoration: none;
+}
+
+.back-to-all-stocks svg {
+  width: 1.3em;
+  height: 1.3em;
+  margin-right: 0.2em;
+  stroke: currentColor;
+}
+
+@media (max-width: 640px) {
+  .back-to-all-stocks {
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.9rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Clickable date styles */
+.clickable-date {
+  color: rgb(var(--accent-color));
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: all 0.15s ease;
+  font-weight: 500;
+  background-color: rgba(var(--date-highlight-bg));
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.clickable-date:hover {
+  text-decoration-thickness: 2px;
+  opacity: 0.9;
+}
+
+/* Theme toggle specific styles */
+.theme-toggle-container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  padding: 2px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-slider {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme Toggle Styles - Icons only */
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Update the track layout */
+.toggle-track {
+  width: 90px;
+  height: 40px;
+  background-color: #f1f5f9;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  position: relative;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dark .toggle-track {
+  background-color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-icon {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  color: #555; /* Neutral color for both icons */
+}
+
+.dark .toggle-icon {
+  color: #ccc; /* Neutral light color for dark mode */
+}
+
+/* Hide text labels */
+.toggle-text {
+  display: none;
+}
+
+/* Remove colored styling */
+.light-icon, .dark-icon, 
+.dark .light-icon, .dark .dark-icon {
+  color: inherit; /* Use parent color */
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 42px;
+  height: 34px;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dark .toggle-thumb {
+  background-color: #334155;
+}
+
+.toggle-thumb-left {
+  transform: translateX(0);
+}
+
+.toggle-thumb-right {
+  transform: translateX(44px);
+}
+
+/* Mobile adjustments for theme toggle */
+@media (max-width: 768px) {
+  /* Fixed positioning for theme toggle - always bottom right */
+  .theme-toggle-container {
+    position: fixed;
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+    transform: scale(0.7);
+    transform-origin: bottom right;
+    margin: 0;
+    padding: 0;
+    z-index: 100; /* Keep it above other elements */
+  }
+
+  /* Make the toggle visible by ensuring it has a background */
+  .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    padding: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    margin: 0;
+  }
+  
+  .dark .theme-toggle {
+    background-color: rgba(30, 41, 59, 0.9);
+  }
+  
+  /* Adjust the toggle track size to fit better on small screens */
+  .toggle-track {
+    width: 80px;
+    height: 36px;
+  }
+  
+  /* Adjust the thumb position for the smaller track */
+  .toggle-thumb {
+    width: 38px;
+    height: 30px;
+  }
+  
+  .toggle-thumb-right {
+    transform: translateX(38px);
+  }
+  
+  /* Ensure Jump button is always centered */
+  .jump-to-current-button {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 16px;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  /* Position current date indicator for mobile - centered on the line */
+  .current-date-indicator {
+    width: 18px;
+    left: 21px; /* Match the mobile timeline line */
+    height: 2px;
+    transform: none;
+  }
+  
+  /* Adjust timeline dots for mobile - perfect center alignment */
+  .timeline-dot {
+    left: 14px; /* Perfectly center with the timeline line */
+    width: 14px;
+    height: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .timeline-dot.current {
+    left: 12px; /* Perfectly center with the timeline line for larger dot */
+    width: 18px;
+    height: 18px;
+    top: 50%;
+  }
+  
+  /* Ensure timeline lines are centered */
+  .timeline-line,
+  .timeline-line-past {
+    left: 19px;
+  }
+  
+  /* Mobile specific alignment for same-day events - handled in JS now */
+  .current-date-indicator.same-day-event {
+    left: 21px !important; /* Match mobile timeline positioning */
+    width: 25px !important; /* Wider on mobile */
+    /* Top position controlled by inline styles */
+  }
+  
+  /* Reposition the date label ABOVE the timeline */
+  .current-date-label {
+    position: absolute;
+    font-size: 0.65rem;
+    padding: 4px 6px;
+    right: auto;
+    left: 10px; /* Position directly over timeline */
+    top: -30px; /* Position ABOVE the horizontal line */
+    transform: none; 
+    max-width: none; /* Allow natural width */
+    white-space: nowrap; /* Keep on one line */
+    text-align: left;
+    line-height: 1.2;
+    background-color: rgba(var(--date-label-bg), 0.85); /* Semi-transparent */
+    z-index: 20;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Completely rework card layout for mobile */
+  .flip-card {
+    margin-bottom: 2.5rem;
+    width: calc(100% - 60px); /* Leave more space for timeline, matches ml-20 */
+    max-width: none;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+  
+  /* Reduce card padding to fit more content */
+  .flip-card-front, 
+  .flip-card-back {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Force cards to be properly sized */
+  .flip-card-inner, 
+  .flip-card-front, 
+  .flip-card-back {
+    width: 100%;
+    min-height: auto;
+  }
+  
+  /* Adjust card title sizes */
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+  
+  h3 {
+    font-size: 1rem;
+  }
+  
+  /* Make type pills smaller */
+  .type-pill {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .jump-to-current-button {
+    bottom: 16px;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    /* left: 50% and transform are inherited from the desktop styles */
+  }
+
+  .timeline-line-past.same-day-event {
+    /* Mobile adjustment for same day events */
+    height: auto !important;
+  }
+
+  .home-page {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100vw;
+  }
+  .search-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* --- TIMELINE CONTROLS (Slider & Filter) --- */
+.timeline-controls {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 18px rgba(13, 35, 64, 0.08), 0 1.5px 6px rgba(1, 138, 239, 0.07);
+  border: 1px solid rgba(var(--card-border));
+  padding: 1.5rem 2rem 1.25rem 2rem;
+  margin: 0 auto 2.5rem auto;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.dark .timeline-controls {
+  background: linear-gradient(135deg, #232b3a 0%, #1a2230 100%);
+  border: 1px solid rgba(var(--card-border));
+  box-shadow: 0 4px 18px rgba(59, 130, 246, 0.10), 0 1.5px 6px rgba(13, 35, 64, 0.07);
+}
+
+.timeline-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+  min-height: 56px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.timeline-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
+}
+.dark .timeline-slider-labels {
+  color: #a5b4fc;
+}
+.timeline-slider input[type="range"] {
+  width: 100%;
+  accent-color: #2563eb;
+  height: 4px;
+  background: #e0e7ef;
+  border-radius: 2px;
+  outline: none;
+  margin: 0;
+  transition: background 0.2s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: auto;
+}
+.dark .timeline-slider input[type="range"] {
+  background: #232b3a;
+  accent-color: #3b82f6;
+}
+.timeline-slider input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.timeline-slider input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 2px solid #2563eb;
+}
+.dark .timeline-slider input[type="range"]::-webkit-slider-thumb {
+  background: #3b82f6;
+  border: 2px solid #232b3a;
+}
+.timeline-slider input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.dark .timeline-slider input[type="range"]::-moz-range-thumb {
+  background: #3b82f6;
+  border: 2px solid #232b3a;
+}
+.timeline-slider input[type="range"]::-ms-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.dark .timeline-slider input[type="range"]::-ms-thumb {
+  background: #3b82f6;
+  border: 2px solid #232b3a;
+}
+.timeline-slider input[type="range"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+.timeline-slider input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
+.timeline-slider .slider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #e0e7ef;
+  border-radius: 2px;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+.dark .timeline-slider .slider-track {
+  background: #232b3a;
+}
+.timeline-slider .slider-range {
+  position: absolute;
+  top: 50%;
+  height: 4px;
+  border-radius: 2px;
+  background: #2563eb;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.dark .timeline-slider .slider-range {
+  background: #3b82f6;
+}
+@media (max-width: 700px) {
+  .timeline-slider {
+    min-height: 60px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .timeline-slider-labels {
+    margin-bottom: 0.3rem;
+  }
+  .timeline-slider input[type="range"] {
+    height: 36px;
+    min-height: 36px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .timeline-slider input[type="range"]::-webkit-slider-thumb,
+  .timeline-slider input[type="range"]::-moz-range-thumb,
+  .timeline-slider input[type="range"]::-ms-thumb {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media (max-width: 480px) {
+  .timeline-slider {
+    min-height: 70px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .timeline-slider input[type="range"] {
+    height: 44px;
+    min-height: 44px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .timeline-slider input[type="range"]::-webkit-slider-thumb,
+  .timeline-slider input[type="range"]::-moz-range-thumb,
+  .timeline-slider input[type="range"]::-ms-thumb {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.timeline-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+.dark .timeline-slider-labels {
+  color: #a5b4fc;
+}
+
+.timeline-slider input[type="range"] {
+  width: 100%;
+  accent-color: #2563eb;
+  height: 4px;
+  background: #e0e7ef;
+  border-radius: 2px;
+  outline: none;
+  margin: 0;
+  transition: background 0.2s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: auto;
+}
+.dark .timeline-slider input[type="range"] {
+  background: #232b3a;
+  accent-color: #3b82f6;
+}
+
+.timeline-slider input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.timeline-slider input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 2px solid #2563eb;
+}
+.dark .timeline-slider input[type="range"]::-webkit-slider-thumb {
+  background: #3b82f6;
+  border: 2px solid #232b3a;
+}
+
+.timeline-slider input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.dark .timeline-slider input[type="range"]::-moz-range-thumb {
+  background: #3b82f6;
+  border: 2px solid #232b3a;
+}
+
+.timeline-slider input[type="range"]::-ms-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.dark .timeline-slider input[type="range"]::-ms-thumb {
+  background: #3b82f6;
+  border: 2px solid #232b3a;
+}
+
+.timeline-slider input[type="range"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+
+.timeline-slider input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
+
+.timeline-slider .slider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #e0e7ef;
+  border-radius: 2px;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+.dark .timeline-slider .slider-track {
+  background: #232b3a;
+}
+
+.timeline-slider .slider-range {
+  position: absolute;
+  top: 50%;
+  height: 4px;
+  border-radius: 2px;
+  background: #2563eb;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.dark .timeline-slider .slider-range {
+  background: #3b82f6;
+}
+
+@media (max-width: 700px) {
+  .timeline-slider {
+    min-height: 60px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .timeline-slider-labels {
+    margin-bottom: 0.3rem;
+  }
+  .timeline-slider input[type="range"] {
+    height: 36px;
+    min-height: 36px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .timeline-slider input[type="range"]::-webkit-slider-thumb,
+  .timeline-slider input[type="range"]::-moz-range-thumb,
+  .timeline-slider input[type="range"]::-ms-thumb {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-slider {
+    min-height: 70px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .timeline-slider input[type="range"] {
+    height: 44px;
+    min-height: 44px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .timeline-slider input[type="range"]::-webkit-slider-thumb,
+  .timeline-slider input[type="range"]::-moz-range-thumb,
+  .timeline-slider input[type="range"]::-ms-thumb {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Timeline filter modern card style */
+.timeline-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+.timeline-filter-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(var(--corporate-blue));
+  margin-right: 0.5rem;
+}
+.dark .timeline-filter-label {
+  color: #a5b4fc;
+}
+
+.timeline-filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f3f6fa;
+  border-radius: 0.75rem;
+  padding: 0.4rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1d3557;
+  border: 1.5px solid #e0e7ef;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+  user-select: none;
+}
+.timeline-filter-checkbox input[type="checkbox"] {
+  accent-color: #2563eb;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.4em;
+  cursor: pointer;
+}
+.timeline-filter-checkbox.active, .timeline-filter-checkbox:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+.dark .timeline-filter-checkbox {
+  background: #232b3a;
+  color: #a5b4fc;
+  border: 1.5px solid #232b3a;
+}
+.dark .timeline-filter-checkbox.active, .dark .timeline-filter-checkbox:hover {
+  background: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+/* Responsive adjustments for timeline controls */
+@media (max-width: 700px) {
+  .timeline-controls {
+    max-width: 98vw;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
+  .timeline-slider {
+    min-height: 60px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .timeline-slider input[type="range"] {
+    height: 36px;
+    min-height: 36px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .timeline-slider input[type="range"]::-webkit-slider-thumb,
+  .timeline-slider input[type="range"]::-moz-range-thumb,
+  .timeline-slider input[type="range"]::-ms-thumb {
+    width: 28px;
+    height: 28px;
+  }
+  .timeline-filter {
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .timeline-controls {
+    padding: 0.75rem 0.25rem 0.75rem 0.25rem;
+    border-radius: 0.75rem;
+  }
+  .timeline-slider {
+    min-height: 70px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .timeline-slider input[type="range"] {
+    height: 44px;
+    min-height: 44px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .timeline-slider input[type="range"]::-webkit-slider-thumb,
+  .timeline-slider input[type="range"]::-moz-range-thumb,
+  .timeline-slider input[type="range"]::-ms-thumb {
+    width: 32px;
+    height: 32px;
+  }
+  .timeline-filter {
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+  .timeline-filter-checkbox {
+    font-size: 0.95rem;
+    padding: 0.3rem 0.7rem;
+  }
+}
+
+/* Add margin below controls before timeline */
+.timeline-controls + .timeline-main {
+  margin-top: 1.5rem;
+}
+/* --- END TIMELINE CONTROLS --- */
+
+/* --- HOMEPAGE STOCK CARD SECTION MARGINS --- */
+
+/* Desktop: restore more generous margins for .home-page and .search-container */
+@media (min-width: 641px) {
+  .home-page {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .search-container {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 36rem;
+  }
+}
+
+/* Mobile: balance left/right margins for .home-page, .search-container, and .home-page .flip-card */
+@media (max-width: 640px) {
+  .home-page {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100vw;
+  }
+  .search-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+  .home-page .flip-card {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    max-width: none;
+  }
+}
+/* --- END HOMEPAGE STOCK CARD SECTION MARGINS --- */
+
+/* Homepage specific styles */
+.stock-search {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(var(--card-border), 1);
+  border-radius: 0.5rem;
+  background-color: rgb(var(--card-bg));
+  color: rgb(var(--foreground-rgb));
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.stock-search:focus {
+  outline: none;
+  border-color: rgba(var(--accent-color), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--accent-color), 0.15);
+}
+
+/* Stock card grid */
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .stock-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stock-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Stock card styling */
+.stock-card {
+  background-color: rgb(var(--card-bg));
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(var(--card-border), 1);
+  padding: 1.25rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.stock-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stock-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.stock-card-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(var(--corporate-blue));
+}
+
+.stock-card-ticker {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: rgba(var(--accent-color), 0.1);
+  color: rgb(var(--accent-color));
+  letter-spacing: 0.025em;
+}
+
+.stock-card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stock-card-market {
+  font-size: 0.875rem;
+  color: rgba(var(--foreground-rgb), 0.8);
+}
+
+.stock-card-sector {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background-color: rgba(var(--foreground-rgb), 0.1);
+  color: rgba(var(--foreground-rgb), 0.7);
+}
+
+.stock-card-price {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #2563eb;
+  text-align: right;
+}
+
+@media (min-width: 641px) {
+  .stock-card-price {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    position: static;
+    text-align: right;
+  }
+  .mobile-hamburger {
+    display: none !important;
+  }
+  .menu-hamburger {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .stock-card-price {
+    margin-top: 0.75rem;
+    text-align: right;
+  }
+  .menu-hamburger {
+    display: block !important;
+  }
+  .search-container {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .stock-search {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
+}
+
+/* Modern card style for StockPriceSection */
+.stock-price-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  border-radius: 1.25rem;
+  box-shadow: 0 6px 32px rgba(13, 35, 64, 0.10), 0 1.5px 6px rgba(1, 138, 239, 0.07);
+  border: 1px solid rgba(var(--card-border));
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 420px;
+  margin: 0 auto 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+/* Responsive width and margin for .stock-price-card-wide */
+.stock-price-card-wide {
+  width: 100%;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .stock-price-card-wide {
+    max-width: 98vw;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.stock-price-card:hover {
+  box-shadow: 0 12px 36px rgba(13, 35, 64, 0.13), 0 2px 8px rgba(1, 138, 239, 0.10);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.stock-price-main {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1d3557;
+  margin-bottom: 0.5rem;
+}
+
+.dark .stock-price-card {
+  background: linear-gradient(135deg, #232b3a 0%, #1a2230 100%);
+  border: 1px solid rgba(var(--card-border));
+  box-shadow: 0 6px 32px rgba(59, 130, 246, 0.10), 0 1.5px 6px rgba(13, 35, 64, 0.07);
+}
+
+.stock-price-meta {
+  font-size: 1.1rem;
+  color: #334155;
+  margin-bottom: 0.25rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.dark .stock-price-main {
+  color: #a5b4fc;
+}
+
+.dark .stock-price-meta {
+  color: #cbd5e1;
+}
+
+.stock-price-updated {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.dark .stock-price-updated {
+  color: #94a3b8;
+}
+
+/* Add a wide version of the stock price card to match the timeline card width.
+   This will be used on the individual stock page for the price card. */
+.stock-price-card-wide {
+  width: 100%;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .stock-price-card-wide {
+    max-width: 98vw;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+/* Add green/red coloring for price/percent if not already present (tailwind utility fallback) */
+.text-green-600 { color: #16a34a !important; }
+.text-red-600 { color: #dc2626 !important; }
+
+/* Remove any table-like styling */
+.home-page {
+  padding: 1.5rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.home-page h1 {
+  text-align: center;
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.home-page p {
+  text-align: center;
+  color: rgba(var(--foreground-rgb), 0.8);
+  margin-bottom: 2rem;
+}
+
+/* Search container styling */
+.search-container {
+  max-width: 36rem;
+  margin: 0 auto 2rem auto;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(var(--foreground-rgb), 0.4);
+}
+
+/* Add these mobile-specific styles at the end of your file */
+
+/* Mobile optimizations for homepage */
+@media (max-width: 640px) {
+  /* Adjust container padding for better edge spacing */
+  .home-page .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Optimize header sizing */
+  .home-page h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .home-page p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Make the search bar more touch-friendly */
+  .stock-search {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-width: 2px; /* Slightly thicker border is more visible on mobile */
+  }
+  
+  .search-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .search-icon {
+    right: 0.875rem;
+  }
+  
+  /* Enhance stock cards for touch */
+  .stock-card {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-width: 1px;
+    /* Add tap highlight color for better touch feedback */
+    -webkit-tap-highlight-color: rgba(var(--accent-color), 0.15);
+  }
+  
+  .stock-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s;
+  }
+  
+  /* Adjust stock card header for better mobile layout */
+  .stock-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .stock-card-name {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  
+  /* Position the ticker in the corner on mobile */
+  .stock-card-ticker {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  /* Make stock card relative for absolute positioning of ticker */
+  .stock-card {
+    position: relative;
+  }
+  
+  /* Give more room for the stock info layout */
+  .stock-card-details {
+    margin-top: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  /* Adjust section headings */
+  .home-page h2 {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Enhanced touch feedback */
+  .stock-grid a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Small phone optimizations */
+@media (max-width: 380px) {
+  .home-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .stock-grid {
+    gap: 0.75rem;
+  }
+  
+  .stock-card {
+    padding: 0.875rem;
+  }
+  
+  .stock-card-name {
+    font-size: 0.95rem;
+    padding-right: 3rem; /* Make space for the ticker */
+  }
+}
+
+/* Add smooth scrolling to the entire site */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Make the home page take at least the full viewport height */
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push content to fill available space */
+.home-page .container {
+  flex: 1;
+}
+
+/* Remove underlines from all stock card links */
+.home-page a,
+.stock-grid a,
+a:has(.stock-card) {
+  text-decoration: none;
+}
+
+/* Logo visibility styles */
+.logo-light {
+  display: block !important;
+}
+.logo-dark {
+  display: none !important;
+}
+html.dark .logo-light {
+  display: none !important;
+}
+html.dark .logo-dark {
+  display: block !important;
+}
+
+/* Hamburger menu button styles */
+.menu-hamburger {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-hamburger:hover {
+  background: rgba(var(--accent-color), 0.08);
+}
+.menu-hamburger svg {
+  color: rgb(var(--accent-color));
+  width: 2rem;
+  height: 2rem;
+}
+.dark .menu-hamburger svg {
+  color: #fff;
+}
+
+/* Stock price graph styles */
+.stock-price-graph-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 2.5rem auto;
+  padding: 0 0.5rem;
+}
+
+.stock-price-graph {
+  background: #f3f6fa;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(13, 35, 64, 0.07);
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stock-price-graph-ranges {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.range-btn {
+  background: #e0e7ef;
+  color: #1d3557;
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.range-btn.active, .range-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.stock-price-graph-chart {
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.chart-placeholder {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .stock-price-graph-container {
+    max-width: 98vw;
+    padding: 0 0.25rem;
+  }
+  .stock-price-graph {
+    padding: 1rem 0.25rem 1rem 0.25rem;
+  }
+  .stock-price-graph-chart {
+    min-height: 120px;
+  }
+}
