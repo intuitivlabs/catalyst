@@ -18,7 +18,6 @@ export default function StockPriceGraph({ ticker }: StockPriceGraphProps) {
     script.type = 'text/javascript';
     script.async = true;
     script.onload = () => {
-      // @ts-expect-error: TradingView is injected by the TradingView widget script
       if (window.TradingView) {
         // Set default chart type to Line
         new window.TradingView.widget({
