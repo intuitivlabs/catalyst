@@ -2,6 +2,16 @@ import { useEffect, useState } from 'react';
 import { fetchFinnhubQuote } from '../utils/Finnhub';
 import Link from 'next/link';
 import { StockInfo } from '../data/stocksData';
+import { tslaTimelineEvents } from '../data/TSLAtimelineData';
+import { tmcTimelineEvents } from '../data/TMCtimelineData';
+import { aaplTimelineEvents } from '../data/AAPLtimelineData';
+import { amznTimelineEvents } from '../data/AMZNtimelineData';
+import { msftTimelineEvents } from '../data/MSFTtimelineData';
+import { googlTimelineEvents } from '../data/GOOGLtimelineData';
+import { nvdaTimelineEvents } from '../data/NVDAtimelineData';
+import { metaTimelineEvents } from '../data/METAtimelineData';
+import { format } from 'date-fns';
+import { TimelineEvent } from '../types';
 
 interface StockCardProps {
   stock: StockInfo;
@@ -40,6 +50,38 @@ export default function StockCard({ stock }: StockCardProps) {
   const priceClass = isGain ? 'text-green-600' : isLoss ? 'text-red-600' : 'text-gray-700 dark:text-gray-200';
   const percentClass = isGain ? 'text-green-600' : isLoss ? 'text-red-600' : 'text-gray-500 dark:text-gray-400';
 
+  // --- Upcoming Event Preview ---
+  function getUpcomingEventForStock(ticker: string) {
+    const now = new Date();
+    let events: TimelineEvent[] = [];
+    switch (ticker.toUpperCase()) {
+      case 'TSLA':
+        events = tslaTimelineEvents; break;
+      case 'TMC':
+        events = tmcTimelineEvents; break;
+      case 'AAPL':
+        events = aaplTimelineEvents; break;
+      case 'AMZN':
+        events = amznTimelineEvents; break;
+      case 'MSFT':
+        events = msftTimelineEvents; break;
+      case 'GOOGL':
+        events = googlTimelineEvents; break;
+      case 'NVDA':
+        events = nvdaTimelineEvents; break;
+      case 'META':
+        events = metaTimelineEvents; break;
+      default:
+        return null;
+    }
+    // Find the next event in the future
+    const upcoming = events.filter(e => e.date && new Date(e.date) > now)
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
+    return upcoming || null;
+  }
+
+  const upcomingEvent = getUpcomingEventForStock(stock.ticker);
+
   return (
     <Link href={`/stocks/${stock.ticker}`} className="block">
       <div className="stock-card">
@@ -63,6 +105,14 @@ export default function StockCard({ stock }: StockCardProps) {
             </span>
           ) : '—'}
         </div>
+        {/* Upcoming Event Preview */}
+        {upcomingEvent && (
+          <div className="next-event-preview">
+            <span className="font-semibold">Next Event:</span>
+            <span className="event-title" title={upcomingEvent.title}>{upcomingEvent.title}</span>
+            <span className="event-date">{format(new Date(upcomingEvent.date), 'MMM d, yyyy')}</span>
+          </div>
+        )}
       </div>
     </Link>
   );

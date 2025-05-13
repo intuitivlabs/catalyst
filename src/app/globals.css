@@ -1991,3 +1991,34 @@ html.dark .logo-dark {
     min-height: 120px;
   }
 }
+
+/* Next event preview styles */
+.stock-card .next-event-preview {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: #e8f1fd;
+  border: 1px solid #b6d4fa;
+  font-size: 0.85em;
+  color: #2563eb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.stock-card .next-event-preview .event-title {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stock-card .next-event-preview .event-date {
+  color: #2563eb;
+  font-weight: 400;
+  font-size: 0.95em;
+}
+@media (max-width: 640px) {
+  .stock-card .next-event-preview {
+    font-size: 0.78em;
+    padding: 0.4rem 0.5rem;
+  }
+}
