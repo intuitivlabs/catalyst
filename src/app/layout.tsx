@@ -14,9 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'TMC 2025 Timeline: Company and Policy Events',
-  description: 'An interactive timeline of key events for The Metals Company in 2025',
-  // Add viewport meta tag to ensure full zoom out on all pages
+  title: 'Catalyst: Company and Policy Events Timeline',
+  description: 'An interactive timeline of key company and policy events for major stocks',
   viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
 };
 
