@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Catalyst: Company and Policy Events Timeline',
+  title: 'catalyst: Company and Policy Events Timeline',
   description: 'An interactive timeline of key company and policy events for major stocks',
   viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
 };
